@@ -2,17 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "dataStore.h"
 #include "mascotas.h"
 #include "validaciones.h"
-
-
-
 
 #define TAM 10
 #define TAM_C 5
 #define TAM_T 5
-#define TAM_S 5
+#define TAM_S 3
 
 
 
@@ -29,7 +25,7 @@ int main()
     eMascota mascota[TAM];
     etipo datosTipo [20]= {{1000,"Ave"},{1001,"Perro"},{1002,"Gato"},{1003,"Roedor"},{1004,"Pez"},};
     eColor datosColor [20]= { {5000,"Negro"}, {5001,"Blanco"}, {5002,"Gris"}, {5003,"Rojo"}, {5004,"Azul"} };
-    eServicio  datosServicio[20]={ {250,"Corte"}, {400,"Castrado"}, {300,"desparacitado"} };
+    eServicio  datosServicio[20]={ {20000,"Corte"}, {20001,"Castrado"}, {20002,"Desparacitado"} };
 
     int rta;
 

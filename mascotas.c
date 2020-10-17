@@ -5,7 +5,10 @@
 # include "mascotas.h"
 #include "validaciones.h"
 
-
+#define TAM 10
+#define TAM_C 5
+#define TAM_T 5
+#define TAM_S 3
 
 
 int inicializarMascotas(eMascota animal[], int tam)
@@ -88,6 +91,7 @@ int altaMascota( eMascota animal[], int tam,  etipo tipoM[], int tamT,eColor col
     int error=1;
     int indice;
     eMascota nuevaMascota;
+
     int auxIdtipo;
     int auxIdColor;
 
@@ -112,7 +116,6 @@ int altaMascota( eMascota animal[], int tam,  etipo tipoM[], int tamT,eColor col
             mostrarTipos(tipoM,tamT);
 
             printf("\nIngrese ID de tipo: ");
-            fflush(stdin);
             scanf("%d",&auxIdtipo);
 
             while(validarIdTipo(tipoM,tamT,auxIdtipo)==0)//no valido
@@ -248,7 +251,7 @@ int mostrarMascotas(eMascota animal[], int tam)
         }
         if( flag == 0)
         {
-            printf("No hay autos en la lista");
+            printf("No hay mascotas en la lista");
         }
         printf("\n\n");
 
@@ -262,8 +265,7 @@ void mostrarMascota(eMascota unaMascota)
 
 
 
-
-    printf(" %4d     %4d    %4d     %10s   %4d    %20s \n",unaMascota.id,unaMascota.idTipo,unaMascota.idColor,unaMascota.nombre,unaMascota.edad);
+    printf(" %4d     %4d    %4d     %10s   %4d     \n",unaMascota.id,unaMascota.idTipo,unaMascota.idColor,unaMascota.nombre,unaMascota.edad);
 }
 
 int validarIdTipo(etipo tipo[],int tamT,int id)
@@ -332,13 +334,16 @@ int modificarMascota(eMascota animal[], int tam, int id)
             scanf("%c",&confirma);
             if(confirma=='s')
             {
-                mostrarMascotas(animal, tam);
+
                 switch(menuModificacion())
                 {
                 case 'a':
+
+                    mostrarMascotas(animal,tam);
                     animal[indice].idTipo=getInt("Ingrese id tipo (numero):","ERROR\n Ingrese id nuevamente:");
                     break;
                 case 'b':
+                    mostrarMascotas(animal,tam);
                     animal[indice].edad=getInt("Ingrese edad :","ERROR\n Ingrese modelo nuevamente:");
                     break;
 

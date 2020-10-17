@@ -12,17 +12,10 @@ typedef struct //fecha
 typedef struct //servicio
 {
     int id;
-    char descripcion[10][25];
+    char descripcion[25];
     int precio;
 } eServicio;
 
-typedef struct //trabajo
-{
-    int id;
-    int idmascota;
-    int idServicio;
-    int fecha;
-} eTrabajo;
 
 typedef struct //marca
 {
@@ -47,6 +40,14 @@ typedef struct //auto/tiene isEmpty
     int edad;
     int isEmpty;// 1 esta vacia 0 esta llena
 } eMascota;
+
+typedef struct //trabajo
+{
+    int id;
+    int idmascota;
+    int idServicio;
+    int fecha;
+} eTrabajo;
 
 
 
