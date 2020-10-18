@@ -23,10 +23,9 @@ int main()
     int idParam;
     int flagOpcion=0;
     eMascota mascota[TAM];
-    etipo datosTipo [20]= {{1000,"Ave"},{1001,"Perro"},{1002,"Gato"},{1003,"Roedor"},{1004,"Pez"},};
+    eTipo datosTipo [20]= {{1000,"Ave"},{1001,"Perro"},{1002,"Gato"},{1003,"Roedor"},{1004,"Pez"},};
     eColor datosColor [20]= { {5000,"Negro"}, {5001,"Blanco"}, {5002,"Gris"}, {5003,"Rojo"}, {5004,"Azul"} };
     eServicio  datosServicio[20]={ {20000,"Corte"}, {20001,"Castrado"}, {20002,"Desparacitado"} };
-
     int rta;
 
     int proximoIdMascota=0001;
@@ -66,9 +65,9 @@ int main()
             if(flagOpcion==1)
             {
                 printf("   ***MODIFICAR  MASCOTA***\n\n");
-                mostrarMascotas(mascota, TAM);
+                mostrarMascotas(mascota, TAM,datosColor,TAM_C, datosTipo,TAM_T);
                 idParam=getInt("Ingrese Id de la mascota que desea modificar :","ERROR\nEnter ID nuevamente:");
-                switch(modificarMascota(mascota,TAM,idParam))
+                switch(modificarMascota(mascota,TAM,datosColor,TAM_C,datosTipo,TAM_T))
                 {
                 case -1:
                     printf("\n no se pudo encontrar mascota\n\n");
@@ -82,12 +81,10 @@ int main()
                 }
             }
 
-
-
-
             break;
         case 'c':
-            rta = bajaMascota(mascota, TAM);
+
+            rta= bajaMascota(mascota,TAM,datosColor,TAM_C,datosTipo,TAM_T);
 
             if( rta == 0)
             {
@@ -101,11 +98,9 @@ int main()
             {
                 printf("Se ha producido un error en la baja\n");
             }
-
-
             break;
         case 'd':
-            mostrarMascotas(mascota,TAM);
+          mostrarMascotas(mascota,TAM,datosColor,TAM_C,datosTipo,TAM_T);
             break;
         case 'e':
             mostrarTipos(datosTipo, TAM_T);

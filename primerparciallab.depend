@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1602957781 source:c:\users\usuario\desktop\primerparciallab\main.c
+1602988594 source:c:\users\usuario\desktop\primerparciallab\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -7,7 +7,7 @@
 	"mascotas.h"
 	"validaciones.h"
 
-1602957262 c:\users\usuario\desktop\primerparciallab\mascotas.h
+1602986907 c:\users\usuario\desktop\primerparciallab\mascotas.h
 
 1602886932 c:\users\usuario\desktop\primerparciallab\validaciones.h
 
@@ -18,7 +18,7 @@
 	<string.h>
 	<ctype.h>
 
-1602958103 source:c:\users\usuario\desktop\primerparciallab\mascotas.c
+1602990004 source:c:\users\usuario\desktop\primerparciallab\mascotas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

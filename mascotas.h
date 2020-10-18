@@ -19,13 +19,13 @@ typedef struct //servicio
 
 typedef struct //marca
 {
-    int id;
-    char descripcion[20];
-} etipo;
+    int id_tipo;
+    char descripcionT[20];
+} eTipo;
 
 typedef struct //color
 {
-    int id;
+    int id_Color;
     char nombreColor[20];
 } eColor;
 
@@ -34,7 +34,7 @@ typedef struct //auto/tiene isEmpty
     int id;
     char nombre[20];
     int idTipo;
-    etipo tipo;
+    eTipo tipo;
     eColor color;
     int idColor;
     int edad;
@@ -74,7 +74,7 @@ int inicializarMascotas(eMascota animal[], int tam);
  */
 
 
-int altaMascota( eMascota animal[], int tam,  etipo tipoM[], int tamT,eColor color[], int tamC, int id);
+int altaMascota( eMascota animal[], int tam,  eTipo tipo[], int tamT,eColor color[], int tamC, int id);
 
 
 
@@ -86,7 +86,7 @@ int altaMascota( eMascota animal[], int tam,  etipo tipoM[], int tamT,eColor col
  *
  */
 
-int mostrarTipos(etipo tipo[], int tamT);
+int mostrarTipos(eTipo tipo[], int tamT);
 
 
 /** \brief
@@ -97,7 +97,7 @@ int mostrarTipos(etipo tipo[], int tamT);
  *
  */
 
-void mostrarTipo(etipo unTipo, int t);
+void mostrarTipo(eTipo unTipo, int t);
 
 
 /** \brief Muestra las opciones de los campos a modificar y devuelve la opción elegida
@@ -109,7 +109,7 @@ void mostrarTipo(etipo unTipo, int t);
  */
 
 
-int modificarMascota(eMascota animal[], int tam, int id);
+int modificarMascota(eMascota animal[], int tam, eColor color[],int tamC, eTipo tipo[], int tamT );
 
 /** \brief
  *
@@ -143,7 +143,8 @@ void mostrarColor(eColor unColor, int t);
  *
  */
 
-int mostrarMascotas(eMascota animal[], int tam);
+
+int mostrarMascotas(eMascota animal[], int tam, eColor color[],int tamC,eTipo tipo[], int tamT);
 
 /** \brief
  *
@@ -153,7 +154,9 @@ int mostrarMascotas(eMascota animal[], int tam);
  *
  */
 
-void mostrarMascota(eMascota unaMascota);
+void mostrarMascota(eMascota unaMascota, eColor color[], eTipo tipo[], int tam_col, int tam_tipos);
+
+
 
 
 /** \brief Eliminar un auto por Id (poner la bandera isEmpty en 1)
@@ -164,9 +167,7 @@ si el usuario no confirmó y 2 si está bien
  *
  */
 
-int bajaMascota(eMascota animal[], int tam);
-
-
+int bajaMascota(eMascota animal[], int tam, eColor color[],int tamC, eTipo tipo[], int tamT);
 /** \brief
  *
  * \param
@@ -176,7 +177,7 @@ int bajaMascota(eMascota animal[], int tam);
  */
 
 
-int validarIdTipo(etipo tipo[],int tamT,int id);
+int validarIdTipo(eTipo tipo[],int tamT,int id);
 
 
 /** \brief
@@ -216,6 +217,8 @@ int mostrarServicios(eServicio servicio[], int tamS);
 
 
 
+int obtenerDescripcionTipo(eTipo tipoM[], int tamT, int id_tipo, char descripcionT[]);
 
 
 
+int obtenerDescripcionColor(eColor color[], int tamC,int id_color, char nombreColor[]);

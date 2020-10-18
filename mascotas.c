@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-# include "mascotas.h"
+#include "mascotas.h"
 #include "validaciones.h"
 
 #define TAM 10
@@ -30,7 +30,7 @@ int buscarMascota(eMascota animal[], int tam, int id)
     int indice = -1;
     for(int i = 0; i < tam; i++)
     {
-        if(animal[i].isEmpty == 1)
+        if(animal[i].id ==id&& animal[i].isEmpty == 0)
         {
             indice = i;
             break;
@@ -39,34 +39,32 @@ int buscarMascota(eMascota animal[], int tam, int id)
     return indice;
 }
 
-int bajaMascota(eMascota animal[], int tam)
-{
-    int error = 1;
+
+
+int bajaMascota(eMascota animal[], int tam, eColor color[],int tamC, eTipo tipo[], int tamT)
+{   int error = 1;
     int id;
     int indice;
     int confirma;
 
-
     if(animal!= NULL && tam > 0)
     {
         system("cls");
-        printf("    *** BAJA DE MASCOTA ***\n");
-        mostrarMascotas(animal, tam);
-        printf("Ingrese ID de la mascota: ");
-        fflush(stdin);
+        printf("    *** BAJA DE MASCOTAS ***\n");
+        mostrarMascotas(animal, tam,color, tamC,tipo, tamT);
+        printf("Ingrese Id que desea dar de baja: ");
         scanf("%d", &id);
 
-        indice = buscarMascota(animal, tam,id);
-
+        indice = buscarMascota(animal, tam, id);
 
         if( indice == -1)
         {
-            printf("No existe una mascota con ese id .\n");
+            printf("No existe una persona con ese legajo.\n");
         }
         else
         {
-            mostrarMascota(animal[indice]);
-            printf("Confirma baja: 1 - SI 2 - NO\n\n");
+            mostrarMascota(animal[indice],color,tipo,tamC, tamT);
+            printf("Confirma baja(num): 1 - si 2 - no\n\n");
             scanf("%d", &confirma);
             if(confirma == 1)
             {
@@ -86,7 +84,8 @@ int bajaMascota(eMascota animal[], int tam)
 }
 
 
-int altaMascota( eMascota animal[], int tam,  etipo tipoM[], int tamT,eColor color[], int tamC, int id)
+
+int altaMascota( eMascota animal[], int tam,  eTipo tipo[], int tamT,eColor color[], int tamC, int id)
 {
     int error=1;
     int indice;
@@ -113,12 +112,12 @@ int altaMascota( eMascota animal[], int tam,  etipo tipoM[], int tamT,eColor col
             nuevaMascota.id = id;
             nuevaMascota.isEmpty = 0;
 
-            mostrarTipos(tipoM,tamT);
+            mostrarTipos(tipo,tamT);
 
             printf("\nIngrese ID de tipo: ");
             scanf("%d",&auxIdtipo);
 
-            while(validarIdTipo(tipoM,tamT,auxIdtipo)==0)//no valido
+            while(validarIdTipo(tipo,tamT,auxIdtipo)==0)//no valido
             {
                 printf("id invalido. Reigrese id tipo: " );
                 scanf("%d",&auxIdtipo);
@@ -159,7 +158,7 @@ int altaMascota( eMascota animal[], int tam,  etipo tipoM[], int tamT,eColor col
     return error;
 }
 
-int mostrarTipos(etipo tipo[], int tamT)
+int mostrarTipos(eTipo tipo[], int tamT)
 {
     int error = 1;
     int flag = 0;
@@ -171,7 +170,7 @@ int mostrarTipos(etipo tipo[], int tamT)
         printf("-------------------\n\n");
         for(int i=0; i<tamT; i++)
         {
-            if(tipo[i].id != 0)
+            if(tipo[i].id_tipo != 0)
             {
                 mostrarTipo(tipo[i],tamT);
                 flag = 1;
@@ -189,9 +188,9 @@ int mostrarTipos(etipo tipo[], int tamT)
     return error;
 }
 
-void mostrarTipo(etipo unTipo, int t)
+void mostrarTipo(eTipo unTipo, int t)
 {
-    printf(" %d   %s \n",unTipo.id,unTipo.descripcion);
+    printf(" %d   %s \n",unTipo.id_tipo,unTipo.descripcionT);
 }
 
 
@@ -207,7 +206,7 @@ int mostrarColores(eColor color[], int tamC)
         printf("-------------------\n\n");
         for(int i=0; i<tamC; i++)
         {
-            if(color[i].id != 0)
+            if(color[i].id_Color != 0)
             {
                 mostrarColor(color[i],tamC);
                 flag = 1;
@@ -227,25 +226,25 @@ int mostrarColores(eColor color[], int tamC)
 
 void mostrarColor(eColor unColor, int t)
 {
-    printf(" %d   %s \n",unColor.id,unColor.nombreColor);
+    printf(" %d   %s \n",unColor.id_Color,unColor.nombreColor);
 }
 
 
-int mostrarMascotas(eMascota animal[], int tam)
+int mostrarMascotas(eMascota animal[], int tam, eColor color[],int tamC,eTipo tipo[], int tamT)
 {
     int error = 1;
     int flag = 0;
     if(animal!= NULL && tam > 0)
     {
         system("cls");
-        printf(" ID     IDTipo    IDColor    Nombre   Edad \n");
+        printf(" ID      Color     Tipo     Nombre    Edad \n");
         printf("---------------------------------------------\n\n");
         for(int i=0; i<tam; i++)
         {
             if(animal[i].isEmpty == 0)
             {
 
-                mostrarMascota(animal[i]);
+                mostrarMascota(animal[i],color,tipo,tamC,tamT);
                 flag = 1;
             }
         }
@@ -260,24 +259,31 @@ int mostrarMascotas(eMascota animal[], int tam)
     return error;
 }
 
-void mostrarMascota(eMascota unaMascota)
+
+
+void mostrarMascota(eMascota unaMascota, eColor color[], eTipo tipo[], int tamC, int tamT)
 {
-
-
-
-    printf(" %4d     %4d    %4d     %10s   %4d     \n",unaMascota.id,unaMascota.idTipo,unaMascota.idColor,unaMascota.nombre,unaMascota.edad);
+    char nombreColor[15];
+    char nombretipo[15];
+    if(obtenerDescripcionColor(color,tamC,unaMascota.idColor,nombreColor)==0 &&
+            obtenerDescripcionTipo(tipo,tamT,unaMascota.idTipo,nombretipo)==0)
+    {
+        printf(" %d  %10s  %10s  %10s  %5d\n", unaMascota.id, nombreColor, nombretipo, unaMascota.nombre, unaMascota.edad);
+    }
 }
 
-int validarIdTipo(etipo tipo[],int tamT,int id)
+
+
+int validarIdTipo(eTipo tipo[],int tamT,int id_tipo)
 {
     int esValido = 0;//no es valido
 
-    if(tipo!= NULL && tamT >0 && id >= 1000)
+    if(tipo!= NULL && tamT >0 && id_tipo >= 1000)
     {
         for(int i=0; i<tamT; i++)
         {
 
-            if(tipo[i].id==id)
+            if(tipo[i].id_tipo==id_tipo)
             {
                 esValido = 1;
                 break;
@@ -292,16 +298,16 @@ int validarIdTipo(etipo tipo[],int tamT,int id)
 
 }
 
-int validarIdColor(eColor color[],int tamC,int id)
+int validarIdColor(eColor color[],int tamC,int id_Color)
 {
     int esValido = 0;//no es valido
 
-    if(color!= NULL && tamC >0 && id >= 5000)
+    if(color!= NULL && tamC >0 && id_Color>= 5000)
     {
         for(int i=0; i<tamC; i++)
         {
 
-            if(color[i].id==id)
+            if(color[i].id_Color == id_Color)
             {
                 esValido = 1;
                 break;
@@ -316,10 +322,10 @@ int validarIdColor(eColor color[],int tamC,int id)
 
 }
 
-int modificarMascota(eMascota animal[], int tam, int id)
+int modificarMascota(eMascota animal[], int tam, eColor color[],int tamC, eTipo tipo[], int tamT )
 {
     int indice;
-    int returnValue=-1;
+    int retorna=-1;
     char confirma;
 
 
@@ -329,7 +335,7 @@ int modificarMascota(eMascota animal[], int tam, int id)
         if(indice!=-1)
         {
             printf("\n");
-            mostrarMascotas(animal, tam);
+           mostrarMascotas(animal,tam,color,tamC,tipo,tamT);
             printf("\n Seguro desea modificar: s/n\n\n");
             scanf("%c",&confirma);
             if(confirma=='s')
@@ -339,11 +345,11 @@ int modificarMascota(eMascota animal[], int tam, int id)
                 {
                 case 'a':
 
-                    mostrarMascotas(animal,tam);
+                    mostrarMascotas(animal,tam,color,tamC,tipo,tamT);
                     animal[indice].idTipo=getInt("Ingrese id tipo (numero):","ERROR\n Ingrese id nuevamente:");
                     break;
                 case 'b':
-                    mostrarMascotas(animal,tam);
+                    mostrarMascotas(animal,tam,color,tamC,tipo,tamT);
                     animal[indice].edad=getInt("Ingrese edad :","ERROR\n Ingrese modelo nuevamente:");
                     break;
 
@@ -351,16 +357,16 @@ int modificarMascota(eMascota animal[], int tam, int id)
                     printf("opcion invalida\n\n");
                     break;
                 }
-                returnValue=1;
+                retorna=1;
             }
             else
             {
-                returnValue=0;
+                retorna=0;
             }
         }
     }
 
-    return returnValue;
+    return retorna;
 }
 int buscarLibre(eMascota animal[], int tam) //para dar de alta
 {
@@ -414,6 +420,41 @@ void mostrarServicio(eServicio unServicio, int t)
 }
 
 
+int obtenerDescripcionColor(eColor color[], int tamC,int id_Color, char nombreColor[])
+{
+    int error=1;
+    if(color!=NULL&&tamC>0 &&id_Color>=1000&&nombreColor!=NULL)
+    {
+        for(int i=0; i<tamC; i++)
+        {
+            if(color[i].id_Color==id_Color)
+            {
+                strcpy(nombreColor,color[i].nombreColor);
+                error=0;
+                break;
+            }
+        }
+    }
+    return error;
+}
+
+int obtenerDescripcionTipo(eTipo tipo[], int tamT, int id_tipo, char descripcionT[])
+{
+    int error=1;
+    if(tipo!=NULL&&tamT>0 &&id_tipo>=1000&&descripcionT!=NULL)
+    {
+        for(int i=0; i<tamT; i++)
+        {
+            if(tipo[i].id_tipo==id_tipo)
+            {
+                strcpy(descripcionT,tipo[i].descripcionT);
+                error=0;
+                break;
+            }
+        }
+    }
+    return error;
+}
 
 
 
