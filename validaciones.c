@@ -29,6 +29,8 @@ int getInt(char message[],char errorMessage[])
 
     return number;
 }
+
+
 int validarEnteroPositivo(char number[])
 {
     int returnValue =1;
@@ -43,4 +45,43 @@ int validarEnteroPositivo(char number[])
     }
 
     return returnValue;
+}
+
+
+char getCharTwoOptions(char message[],char errorMessage[],char option1,char option2)
+{
+    char aux;
+
+    puts(message);
+    fflush(stdin);
+    scanf("%c",&aux);
+    aux=tolower(aux);
+
+    while(aux!=option1&&aux!=option2)
+    {
+        puts(errorMessage);
+        fflush(stdin);
+        scanf("%c",&aux);
+        aux=tolower(aux);
+    }
+
+    return aux;
+
+}
+char getChar(char message[],char errorMessage[])
+{
+    char aux;
+
+    puts(message);
+    fflush(stdin);
+    scanf("%c",&aux);
+
+    while((aux<'a'||aux>'z')&&(aux<'A'||aux>'Z'))
+    {
+        puts(errorMessage);
+        fflush(stdin);
+        scanf("%c",&aux);
+    }
+
+    return aux;
 }

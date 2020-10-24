@@ -1,30 +1,124 @@
 # depslib dependency file v1.0
-1602988594 source:c:\users\usuario\desktop\primerparciallab\main.c
+1603501733 source:c:\users\usuario\desktop\primerparciallab\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	"mascotas.h"
+	"tipo.h"
+	"color.h"
+	"cliente.h"
+	"servicio.h"
+	"trabajo.h"
+	"fecha.h"
 	"validaciones.h"
 
-1602986907 c:\users\usuario\desktop\primerparciallab\mascotas.h
+1603500816 c:\users\usuario\desktop\primerparciallab\mascotas.h
+	"tipo.h"
+	"color.h"
+	"cliente.h"
 
-1602886932 c:\users\usuario\desktop\primerparciallab\validaciones.h
+1603495285 c:\users\usuario\desktop\primerparciallab\validaciones.h
 
-1602890583 source:c:\users\usuario\desktop\primerparciallab\validaciones.c
+1603391579 source:c:\users\usuario\desktop\primerparciallab\validaciones.c
 	"validaciones.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 
-1602990004 source:c:\users\usuario\desktop\primerparciallab\mascotas.c
+1603498930 source:c:\users\usuario\desktop\primerparciallab\mascotas.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"mascotas.h"
+	"mascotas.h"
+	"tipo.h"
+	"color.h"
+	"cliente.h"
+	"validaciones.h"
+
+1603476811 c:\users\usuario\desktop\primerparciallab\datastore.h
+
+1603495848 source:c:\users\usuario\desktop\primerparciallab\color.c
+	<stdio.h>
+	<stdlib.h>
+	"dataStore.h"
+	<string.h>
+	<ctype.h>
+	"mascotas.h"
+	"tipo.h"
+	"color.h"
+	"cliente.h"
+
+1603485796 c:\users\usuario\desktop\primerparciallab\color.h
+
+1603495441 source:c:\users\usuario\desktop\primerparciallab\fecha.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"fecha.h"
+
+1603473371 c:\users\usuario\desktop\primerparciallab\fecha.h
+
+1603485911 c:\users\usuario\desktop\primerparciallab\tipo.h
+
+1603495419 c:\users\usuario\desktop\primerparciallab\servicio.h
+
+1603499995 c:\users\usuario\desktop\primerparciallab\trabajo.h
+	"mascotas.h"
+	"fecha.h"
+	"servicio.h"
+
+1603495771 source:c:\users\usuario\desktop\primerparciallab\servicio.c
+	<stdio.h>
+	<stdlib.h>
+	"dataStore.h"
+	<string.h>
+	<ctype.h>
+	"mascotas.h"
+	"servicio.h"
+	"trabajo.h"
+
+1603495727 source:c:\users\usuario\desktop\primerparciallab\tipo.c
+	<stdio.h>
+	<stdlib.h>
+	"dataStore.h"
+	<string.h>
+	<ctype.h>
+	"mascotas.h"
+	"tipo.h"
+	"color.h"
+	"cliente.h"
+
+1603500680 source:c:\users\usuario\desktop\primerparciallab\trabajo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"trabajo.h"
+	"mascotas.h"
+	"tipo.h"
+	"color.h"
+	"cliente.h"
+
+1603478114 c:\users\usuario\desktop\primerparciallab\mascotas.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"mascotas.h"
+	"validaciones.h"
+
+1603499502 c:\users\usuario\desktop\primerparciallab\cliente.h
+
+1603497430 source:c:\users\usuario\desktop\primerparciallab\cliente.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	"mascotas.h"
-	"validaciones.h"
-
-1602893637 c:\users\usuario\desktop\primerparciallab\datastore.h
+	"cliente.h"
 

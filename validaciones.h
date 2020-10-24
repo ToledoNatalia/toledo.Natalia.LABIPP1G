@@ -83,3 +83,14 @@ int validatePositiveFloat(char numberFloat[]);
  *
  */
 int isOnlyLetters(char str[]);
+
+/** \brief Validates that a string has only caracter
+ *
+ * \param message Message for the user
+ * \return 1 in case the string is only numbers or number and one '.' and 0 if it's not
+ *
+ */
+
+char getChar(char message[],char errorMessage[]);
+
+

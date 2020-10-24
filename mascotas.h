@@ -1,33 +1,12 @@
 
+#include "tipo.h"
+#include "color.h"
+#include "cliente.h"
+
 #ifndef MASCOTAS_H_
 #define MASCOTAS_H_
 
-typedef struct //fecha
-{
-    int dia;
-    int mes;
-    char anio;
-} eFecha;
 
-typedef struct //servicio
-{
-    int id;
-    char descripcion[25];
-    int precio;
-} eServicio;
-
-
-typedef struct //marca
-{
-    int id_tipo;
-    char descripcionT[20];
-} eTipo;
-
-typedef struct //color
-{
-    int id_Color;
-    char nombreColor[20];
-} eColor;
 
 typedef struct //auto/tiene isEmpty
 {
@@ -38,16 +17,9 @@ typedef struct //auto/tiene isEmpty
     eColor color;
     int idColor;
     int edad;
+    int idCliente;
     int isEmpty;// 1 esta vacia 0 esta llena
 } eMascota;
-
-typedef struct //trabajo
-{
-    int id;
-    int idmascota;
-    int idServicio;
-    int fecha;
-} eTrabajo;
 
 
 
@@ -61,11 +33,10 @@ typedef struct //trabajo
  *
  */
 
-
 int inicializarMascotas(eMascota animal[], int tam);
 
 
-/** \brief agregar en una lista existente de empleados los valores recibidos como parámetros en la primera posición vacía
+/** \brief agregar en una lista existente de mascotas los valores recibidos como parámetros en la primera posición vacía
  *
  * \param int tam longitud del array
  * \param
@@ -73,152 +44,162 @@ int inicializarMascotas(eMascota animal[], int tam);
  *
  */
 
+int altaMascota( eMascota animal[], int tam,eTipo tipo[], int tamT,eColor color[], int tamC, eCliente cliente[],int tamCl,int id);
 
-int altaMascota( eMascota animal[], int tam,  eTipo tipo[], int tamT,eColor color[], int tamC, int id);
-
-
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-
-int mostrarTipos(eTipo tipo[], int tamT);
-
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-
-void mostrarTipo(eTipo unTipo, int t);
 
 
 /** \brief Muestra las opciones de los campos a modificar y devuelve la opción elegida
  *
  * \param int tam longitud del array
+ * \param color array de color
+ * \param int tamC longitud del array de color
+ * \param tipo array de tipo
+ * \param int tamT longitud del array de tipo
+ * \param cliente array de cliente
+ * \param tamcl lingitud del array
  * \param in id del array
  * \return La opción elegida
  *
  */
 
+int modificarMascota(eMascota animal[],int tam ,eTipo tipo[], int tamT,eColor color [],int tamC ,eCliente cliente[], int tamCl, int id );
 
-int modificarMascota(eMascota animal[], int tam, eColor color[],int tamC, eTipo tipo[], int tamT );
 
-/** \brief
+
+/** \brief Muestra las opciones de los campos a modificar y devuelve la opción elegida
  *
- * \param
- * \param
- * \return
- *
- */
-
-
-int mostrarColores(eColor color[], int tamC);
-
-
-/** \brief
- *
- * \param
- * \param
- * \return
+ * \return La opcion elegida
  *
  */
 
-void mostrarColor(eColor unColor, int t);
+char menuModificacion();
 
 
 
 /** \brief
- *
- * \param
- * \param
+ * \param  animal , array de mascotas
+ * \param int tam longitud del array
+ * \param color , array de color
+ * \param int tamC longitud del array de color
+ * \param tipo ,array de tipo
+ * \param int tamT longitud del array de tipo
  * \return
  *
  */
 
+int mostrarMascotas(eMascota animal[], int tam, eColor color[],int tamC, eTipo tipo[], int tamT,eCliente cliente[],int tamCl);
 
-int mostrarMascotas(eMascota animal[], int tam, eColor color[],int tamC,eTipo tipo[], int tamT);
 
-/** \brief
+/** \brief muestra una mascota
  *
- * \param
- * \param
- * \return
- *
+ * \param color array de color
+ * \param  tipo array de tipo
+ * \return  mascota a mostrar
  */
 
-void mostrarMascota(eMascota unaMascota, eColor color[], eTipo tipo[], int tam_col, int tam_tipos);
+void mostrarMascota(eMascota unaMascota, eColor color[],int tamC, eTipo tipo[], int tamT , eCliente cliente[], int tamcl);
 
 
 
-
-/** \brief Eliminar un auto por Id (poner la bandera isEmpty en 1)
+/** \brief Eliminar una mascota por Id (poner la bandera isEmpty en 1)
  *
  * \param int tam longitud del array
  * \return int Devuelve (1) si Error [Longitud no válida o si no puede encontrar un empleado] - (0)
-si el usuario no confirmó y 2 si está bien
+    si el usuario no confirmó y 2 si está bien
  *
  */
 
-int bajaMascota(eMascota animal[], int tam, eColor color[],int tamC, eTipo tipo[], int tamT);
-/** \brief
+int bajaMascota(eMascota animal[], int tam, eColor color[],int tamC, eTipo tipo[], int tamT, eCliente cliente[], int tamcl);
+
+
+
+
+/** \brief Busca un espacio libre en la matriz (isEmpty = 1)
  *
- * \param
- * \param
- * \return
- *
- */
-
-
-int validarIdTipo(eTipo tipo[],int tamT,int id);
-
-
-/** \brief
- *
- * \param
- * \param
- * \return
+ * \param animal array de mascota
+ * \param int tam longitud del array
+ * \return El índice si hay posiciones libres o 0 si no las hay
  *
  */
-
-int validarIdColor(eColor color[],int tamC,int id);
-
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-
-
 
 int buscarLibre(eMascota animal[], int tam);
 
 
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 
-
-int mostrarServicios(eServicio servicio[], int tamS);
-
-
-
-int mostrarServicios(eServicio servicio[], int tamS);
-
-
-
-
-
-int obtenerDescripcionTipo(eTipo tipoM[], int tamT, int id_tipo, char descripcionT[]);
+int validarIdMascota(eMascota mascota[],int tam,int id);
 
 
 
-int obtenerDescripcionColor(eColor color[], int tamC,int id_color, char nombreColor[]);
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+
+int obtenerNombreMascota(eMascota mascota[],int tam,int id,char nombre[]);
+
+
+/** \brief muestra el menu de opciones
+ *
+ * \return la opcion elegida
+ *
+ */
+char menuOrdenamiento();
+
+
+/** \brief Ordene los elementos en la matriz mascotas, el orden de los argumentos indicar orden ARRIBA o ABAJO
+ *
+ * \param int tam longitud del array
+ * \param orden ascendente o descendente
+ * \return int Devuelve (1) si hay error [longitud no válida ] - (0) si está bien
+ *
+ */
+
+int ordenarMascotasXNombre(eMascota animal[], int tam,int orden);
+
+/** \brief Ordene los elementos en la matriz mascotas, el orden de los argumentos indicar orden ARRIBA o ABAJO
+ *
+ *
+ * \param int tam longitud del array
+ * \param orden ascendente o descendente
+ * \return int Devuelve (1) si hay error [longitud no válida ] - (0) si está bien
+ *
+ */
+
+int ordenarMascotasXTipo(eMascota animal[], int tam,int orden);
+
+
+/** \brief Muestra las opciones del menú  y devuelve la opción elegida
+ *
+ * \param animal , array de mascotas
+ * \param color, array de color
+ * \param int tamC, longitud del array de color
+ * \param tipo, array de tipo
+ * \param int tamT , longitud del array de tipo
+ * \return
+ *
+ */
+
+void reportar(eMascota animal[],int tam,eColor color[],int tamC,eTipo tipo[],int tamT,eCliente cliente[],int tamCl);
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+
+
+int colorMascotaFavorito( eMascota animal[],int tam,eColor color[], int tamC);
